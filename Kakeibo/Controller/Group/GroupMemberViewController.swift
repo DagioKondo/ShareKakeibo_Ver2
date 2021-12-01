@@ -45,11 +45,20 @@ class GroupMemberViewController: UIViewController {
         super.viewWillAppear(animated)
         
         userID = UserDefaults.standard.object(forKey: "userID") as! String
-        groupID = UserDefaults.standard.object(forKey: "groupID") as! String
         
         activityIndicatorView.startAnimating()
         loadDBModel.loadOKDelegate = self
-        loadDBModel.loadUserIDAndSettlementDic(groupID: groupID)
+        let joiningUserIDArray = UserDefaults.standard.object(forKey: "joiningUserIDArray") as! [String]
+        profileImageArray = []
+        userNameArray = []
+        self.userIDArray = joiningUserIDArray
+        
+        self.userIDArray.removeAll(where: {$0 == userID})
+        //ユーザーネームとプロフィール画像取得完了
+        loadDBModel.loadGroupMember(userIDArray: self.userIDArray) { [self] UserSets in
+            profileImageArray.append(UserSets.profileImage)
+            userNameArray.append(UserSets.userName)
+        }
     }
     
     @IBAction func back(_ sender: Any) {
@@ -62,26 +71,6 @@ class GroupMemberViewController: UIViewController {
 // MARK: - LoadOKDelegate
 extension GroupMemberViewController:LoadOKDelegate{
     
-    
-    //userID取得完了
-    func loadUserIDAndSettlementDic_OK(check: Int, settlementDic: Dictionary<String, Bool>?, userIDArray: [String]?) {
-        if check == 0{
-            activityIndicatorView.stopAnimating()
-            alertModel.errorAlert(viewController: self)
-        }else{
-            profileImageArray = []
-            userNameArray = []
-            self.userIDArray = userIDArray!
-            
-            self.userIDArray.removeAll(where: {$0 == userID})
-            //ユーザーネームとプロフィール画像取得完了
-            loadDBModel.loadGroupMember(userIDArray: self.userIDArray) { [self] UserSets in
-                profileImageArray.append(UserSets.profileImage)
-                userNameArray.append(UserSets.userName)
-            }
-        }
-
-    }
     
     func loadGroupMember_OK(check: Int) {
         if check == 0{

@@ -167,7 +167,6 @@ extension NewGroupViewController:UITableViewDelegate, UITableViewDataSource{
         joinButton.addTarget(self, action: #selector(joinButton(_:)), for: .touchUpInside)
         joinButton.addTarget(self, action: #selector(touchDown(_:)), for: .touchDown)
         joinButton.addTarget(self, action: #selector(touchUpOutside(_:)), for: .touchUpOutside)
-        joinButton.tag = indexPath.row
         
         rejectButton.layer.cornerRadius = 3
         rejectButton.addTarget(self, action: #selector(rejectButton(_:)), for: .touchUpInside)

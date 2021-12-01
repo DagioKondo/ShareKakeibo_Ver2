@@ -30,6 +30,7 @@ class DetailAllViewController: UIViewController{
     var dateModel = DateModel()
     var changeCommaModel = ChangeCommaModel()
     var alertModel = AlertModel()
+    var userInfoDic:[String:UserSets] = [:]
     
     
     override func viewDidLoad() {
@@ -106,8 +107,7 @@ extension DetailAllViewController:LoadOKDelegate {
             
             //明細に表示するユーザーネームとプロフィール画像取得
             loadDBModel.loadGroupMember(userIDArray: userIDArray) { [self] UserSets in
-                self.profileImageArray.append(UserSets.profileImage)
-                self.userNameArray.append(UserSets.userName)
+                self.userInfoDic.updateValue(UserSets, forKey: UserSets.userID)
             }
         }
     }
@@ -140,7 +140,7 @@ extension DetailAllViewController:UITableViewDelegate, UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return profileImageArray.count
+        return monthGroupDetailsSets.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -150,10 +150,14 @@ extension DetailAllViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! DetailCell
         
-        if profileImageArray.count == monthGroupDetailsSets.count{
-            cell.profileImage.sd_setImage(with: URL(string: profileImageArray[indexPath.row]), completed: nil)
+        
+            
+            let userID = monthGroupDetailsSets[indexPath.row].userID
+            
+            
+            cell.profileImage.sd_setImage(with: URL(string: userInfoDic[userID]!.profileImage), completed: nil)
             cell.paymentLabel.text = changeCommaModel.getComma(num: monthGroupDetailsSets[indexPath.row].paymentAmount) + " 円"
-            cell.userNameLabel.text = userNameArray[indexPath.row]
+            cell.userNameLabel.text = userInfoDic[userID]?.userName
             cell.dateLabel.text = monthGroupDetailsSets[indexPath.row].paymentDay
             cell.category.text = monthGroupDetailsSets[indexPath.row].category
             cell.productNameLabel.text = monthGroupDetailsSets[indexPath.row].productName
@@ -166,9 +170,7 @@ extension DetailAllViewController:UITableViewDelegate, UITableViewDataSource{
             cell.view.layer.shadowRadius = 3
             
             return cell
-        }else{
-            return cell
-        }
+
     }
     
     @objc func refresh() {

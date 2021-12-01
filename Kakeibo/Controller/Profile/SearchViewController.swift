@@ -21,7 +21,6 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchUserTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     
     var loadDBModel = LoadDBModel()
     var selectedUserImageArray = [String]() //profile画像のURLが入る
@@ -50,12 +49,6 @@ class SearchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        tableView.layer.masksToBounds = false
-        tableView.isScrollEnabled = false
-        tableView.layer.shadowOffset = CGSize(width: 0, height: 1)
-        tableView.layer.shadowOpacity = 0.5
-        tableView.layer.shadowRadius = 1
-        tableView.transform = CGAffineTransform(scaleX: 0, y: 0)
         
         loadDBModel.loadOKDelegate = self
         
@@ -79,19 +72,32 @@ class SearchViewController: UIViewController {
     
     @IBAction func decideButton(_ sender: Any) {
         collectionDeligate?.SendArray(selectedUserImageArray: selectedUserImageArray, userIDArray: userIDArray, userNameArray: userNameArray)
-        print(selectedUserImageArray)
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func searchUserButton(_ sender: Any) {
         if searchUserTextField.text == ""{
             nothingLabel.isHidden = false
+            userSearchSets = []
+            tableView.reloadData()
             return
         }
         activityIndicatorView.startAnimating()
         nothingLabel.isHidden = true
         loadDBModel.loadUserSearch(email: searchUserTextField.text!)
         searchUserTextField.text = ""
+    }
+    
+    @IBAction func searchUserTextField(_ sender: Any) {
+        if searchUserTextField.text == ""{
+            nothingLabel.isHidden = false
+            userSearchSets = []
+            tableView.reloadData()
+        }else{
+            activityIndicatorView.startAnimating()
+            nothingLabel.isHidden = true
+            loadDBModel.loadUserSearch(email: searchUserTextField.text!)
+        }
     }
     
     
@@ -113,8 +119,6 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.profileImage!.sd_setImage(with: URL(string: selectedUserImageArray[indexPath.row]), completed: nil)
         cell.deleteButton!.addTarget(self, action: #selector(tapDeleteButton(_:)), for: .touchUpInside)
         cell.userNameLabel.text = userNameArray[indexPath.row]
-        print("daigoitemAt")
-        print(cell.deleteButton.tag)
         
         return cell
     }
@@ -134,7 +138,6 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     @objc func tapDeleteButton(_ sender:UIButton){
         let cell = sender.superview?.superview as! UICollectionViewCell
         let indexPath = collectionView.indexPath(for: cell)
-        print(indexPath?.row)
         selectedUserImageArray.remove(at: indexPath!.row)
         userIDArray.remove(at: indexPath!.row)
         userNameArray.remove(at: indexPath!.row)
@@ -174,7 +177,6 @@ extension SearchViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         nothingLabel.isHidden = true
         selectedUserImageArray.append(userSearchSets[indexPath.row].profileImage)
         userIDArray.append(userSearchSets[indexPath.row].userID)
@@ -182,26 +184,13 @@ extension SearchViewController:UITableViewDelegate,UITableViewDataSource{
         userSearchSets.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
         if userSearchSets.count == 0{
-            UIView.animate(withDuration: 0.3, animations: {
-                self.tableView.transform = CGAffineTransform(scaleX: 0, y: 0)
-                self.tableView.alpha = 0
-            }, completion:  { _ in
-                self.tableViewHeight.constant = CGFloat(self.userSearchSets.count * 74)
-            })
-        }else{
-            UIView.animate(withDuration: 0.3, animations: {
-                
-            }, completion:  { _ in
-                self.tableViewHeight.constant = CGFloat(self.userSearchSets.count * 74)
-            })
+            nothingLabel.isHidden = false
         }
-        
-        
         collectionView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 74
+        return 70
     }
     
     
@@ -220,25 +209,19 @@ extension SearchViewController: LoadOKDelegate{
             for userID in userIDArray{
                 loadUserSearchSets.removeAll(where: {$0.userID == userID})
             }
+            let currentUserID = UserDefaults.standard.object(forKey: "userID") as! String
+            loadUserSearchSets.removeAll { $0.userID == currentUserID}
+            
             userSearchSets = loadUserSearchSets
             
             if userSearchSets.count == 0{
                 nothingLabel.isHidden = false
-                
-                self.tableViewHeight.constant = CGFloat(self.userSearchSets.count * 74)
                 tableView.reloadData()
                 activityIndicatorView.stopAnimating()
             }else{
                 nothingLabel.isHidden = true
-                UIView.animate(withDuration: 0.1, animations: {
-                    self.tableView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                    self.tableView.alpha = 1
-                }, completion:  { _ in
-                    //            self.tableView.isHidden = false
-                    self.tableViewHeight.constant = CGFloat(self.userSearchSets.count * 74)
-                    self.tableView.reloadData()
-                    self.activityIndicatorView.stopAnimating()
-                })
+                tableView.reloadData()
+                activityIndicatorView.stopAnimating()
             }
         }
     }
@@ -249,47 +232,6 @@ extension SearchViewController: LoadOKDelegate{
 // MARK: - UITextFieldDelegate
 extension SearchViewController:UITextFieldDelegate{
     
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string == "" && textField.text != ""{
-            if textField.text?.count == 1{
-                
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.tableView.transform = CGAffineTransform(scaleX: 0, y: 0)
-                    self.tableView.alpha = 0
-                }, completion:  { _ in
-                    self.userSearchSets = []
-                    self.nothingLabel.isHidden = false
-                    self.tableView.reloadData()
-                    self.tableViewHeight.constant = CGFloat(self.userSearchSets.count * 74)
-                })
-                
-            }else{
-                var removeText = textField.text
-                removeText?.removeLast()
-                print(removeText)
-                loadDBModel.loadUserSearch(email: removeText!)
-            }
-        }else if string != "" && textField.text != ""{
-            loadDBModel.loadUserSearch(email: textField.text! + string)
-        }else if string != "" && textField.text == ""{
-            loadDBModel.loadUserSearch(email: string)
-        }else if string == "" && textField.text == ""{
-            
-            UIView.animate(withDuration: 0.3, animations: {
-                self.tableView.transform = CGAffineTransform(scaleX: 0, y: 0)
-                self.tableView.alpha = 0
-            }, completion:  { _ in
-                self.userSearchSets = []
-                self.nothingLabel.isHidden = false
-                self.tableView.reloadData()
-                self.tableViewHeight.constant = CGFloat(self.userSearchSets.count * 74)
-            })
-            
-        }
-        
-        return true
-    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

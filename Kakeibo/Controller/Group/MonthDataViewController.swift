@@ -233,6 +233,7 @@ extension MonthDataViewController:LoadOKDelegate {
                 scrollView.refreshControl?.endRefreshing()
             }
         }else{
+            UserDefaults.standard.setValue(userIDArray, forKey: "joiningUserIDArray")
             self.groupPaymentOfThisMonth.text = changeCommaModel.getComma(num: groupPaymentOfMonth) + "　円"
             self.paymentAverageOfTithMonth.text = changeCommaModel.getComma(num: paymentAverageOfMonth) + "　円"
             dateModel.getPeriodOfThisMonth(settelemtDay: settlementDayOfInt) { maxDate, minDate in
@@ -271,7 +272,6 @@ extension MonthDataViewController:LoadOKDelegate {
 extension MonthDataViewController:UIScrollViewDelegate{
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.y)
         
         headerViewHeightConstraint.constant = max(150 - scrollView.contentOffset.y, 85)
         groupNameBottomConstraint.constant = max(5, 26 - scrollView.contentOffset.y)
@@ -315,5 +315,3 @@ extension MonthDataViewController:GoToVcDelegate{
     }
     
 }
-
-
