@@ -308,10 +308,10 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="kWJ-wy-SqK">
-                                                            <rect key="frame" x="81" y="12" width="187" height="20"/>
+                                                            <rect key="frame" x="81" y="12" width="163" height="20"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="width" constant="163" id="CpD-B3-80s"/>
                                                                 <constraint firstAttribute="height" constant="20" id="E8F-ub-WAn"/>
-                                                                <constraint firstAttribute="width" constant="187" id="MtH-cw-HZ0"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -335,7 +335,7 @@
                                                                 <constraint firstAttribute="height" constant="63.329999999999998" id="BSO-Nv-wPN"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="○○○○円の支払or受取" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbQ-ca-h9v">
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="○○○○円の支払or受取" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="GbQ-ca-h9v">
                                                             <rect key="frame" x="94" y="44" width="225" height="18"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="18" id="YWV-Kj-MGo"/>
@@ -356,6 +356,7 @@
                                                         <constraint firstItem="2vm-hA-7av" firstAttribute="top" secondItem="WZ6-Zl-6ws" secondAttribute="top" constant="12" id="TlT-AF-BHI"/>
                                                         <constraint firstAttribute="bottom" secondItem="nsc-uY-N5C" secondAttribute="bottom" constant="3.6699999999999999" id="n6J-56-uqh"/>
                                                         <constraint firstItem="GbQ-ca-h9v" firstAttribute="leading" secondItem="nsc-uY-N5C" secondAttribute="trailing" constant="30" id="nx8-5X-JBd"/>
+                                                        <constraint firstItem="2vm-hA-7av" firstAttribute="leading" secondItem="kWJ-wy-SqK" secondAttribute="trailing" constant="23" id="vht-3h-Uqf"/>
                                                         <constraint firstItem="GbQ-ca-h9v" firstAttribute="top" secondItem="2vm-hA-7av" secondAttribute="bottom" constant="10" id="yMZ-yz-zSy"/>
                                                         <constraint firstItem="nsc-uY-N5C" firstAttribute="top" secondItem="WZ6-Zl-6ws" secondAttribute="top" constant="3" id="zjT-Jo-buD"/>
                                                     </constraints>
@@ -1483,7 +1484,7 @@
                                     <action selector="invitationButton:" destination="NJW-OK-eRj" eventType="touchUpInside" id="kld-nh-rbg"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="euP-7X-6yN">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレスで検索" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="euP-7X-6yN">
                                 <rect key="frame" x="39.666666666666657" y="96" width="271" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="8o0-3a-XHx"/>
@@ -2711,7 +2712,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="L7o-hf-7BI"/>
         <segue reference="vHG-yb-X8U"/>
-        <segue reference="2n4-R5-2Xf"/>
+        <segue reference="jAd-Qy-5cW"/>
         <segue reference="gYb-um-PEP"/>
     </inferredMetricsTieBreakers>
     <resources>

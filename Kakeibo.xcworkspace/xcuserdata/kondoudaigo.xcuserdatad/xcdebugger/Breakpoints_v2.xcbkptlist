@@ -931,5 +931,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6A8A6D6A-0BD6-4F79-B0A7-20595170A137"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Kakeibo/Controller/Profile/ProfileViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "getFileNamesFromPreferences()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6A8A6D6A-0BD6-4F79-B0A7-20595170A137 - abd24e8c9ffc36e9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Kakeibo.ProfileViewController.getFileNamesFromPreferences() -&gt; ()"
+                  moduleName = "Kakeibo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kondoudaigo/Desktop/Kakeibo/Kakeibo/Controller/Profile/ProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "1040">
+               </Location>
+               <Location
+                  uuid = "6A8A6D6A-0BD6-4F79-B0A7-20595170A137 - 38fd71e688fbbfc2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Foundation.URL) -&gt; Swift.Optional&lt;()&gt; in Kakeibo.ProfileViewController.getFileNamesFromPreferences() -&gt; ()"
+                  moduleName = "Kakeibo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kondoudaigo/Desktop/Kakeibo/Kakeibo/Controller/Profile/ProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "128">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -21,7 +21,7 @@ class SendDBModel{
     //プロフィール画像送信
     func sendProfileImage(data:Data,activityIndicatorView:UIActivityIndicatorView){
         let image = UIImage(data: data)
-        let profileImage = image?.jpegData(compressionQuality: 0.1)
+        let profileImage = image?.jpegData(compressionQuality: 1.0)
         let imageRef = Storage.storage().reference().child("profileImage").child("\(UUID().uuidString + String(Date().timeIntervalSince1970)).jpg")
         profileStoragePath = imageRef.fullPath
         profileStoragePath = String(profileStoragePath.dropFirst(13))

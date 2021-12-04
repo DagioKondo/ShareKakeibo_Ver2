@@ -188,13 +188,13 @@ extension PaymentViewController: UIPickerViewDelegate,UIPickerViewDataSource{
         toolbarOfPaymentDay.setItems([buttonItemOfPaymentDay], animated: true)
         paymentDayTextField.inputAccessoryView = toolbarOfPaymentDay
         
-//        支払い日の選択期間を取得＆反映
-//        let settlementDayString = UserDefaults.standard.object(forKey: "settlementDay") as! String
-//        let settlementDay = Int(settlementDayString)
-//        dateModel.getPeriodOfTextField(settelemtDay: settlementDay!, completion: { maxDate, minDate in
-//            pickerViewOfPaymentDay.maximumDate = maxDate
-//            pickerViewOfPaymentDay.minimumDate = minDate
-//        })
+        //支払い日の選択期間を取得＆反映
+        let settlementDayString = UserDefaults.standard.object(forKey: "settlementDay") as! String
+        let settlementDay = Int(settlementDayString)
+        dateModel.getPeriodOfTextField(settelemtDay: settlementDay!, completion: { maxDate, minDate in
+            pickerViewOfPaymentDay.maximumDate = maxDate
+            pickerViewOfPaymentDay.minimumDate = minDate
+        })
         
     }
     
