@@ -50,6 +50,3 @@ pod 'Charts'<br>
 pod 'Parchment'<br>
 pod 'CropViewController'<br>
 
-## メンバー
-近藤大伍<br>
-都甲裕希<br>
