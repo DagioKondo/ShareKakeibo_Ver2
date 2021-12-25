@@ -8,7 +8,12 @@
 import Foundation
 import UIKit
 
+protocol buttonAnemated{
+    
+}
+
 class ButtonAnimatedModel{
+    
     
     let withDuration:TimeInterval
     let delay:TimeInterval

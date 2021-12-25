@@ -34,4 +34,5 @@ class NotificationModel{
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [identifier])
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
     }
+    
 }

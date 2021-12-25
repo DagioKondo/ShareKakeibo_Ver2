@@ -160,7 +160,7 @@ class LoginModel{
         guard let errcd = AuthErrorCode(rawValue: (error as NSError).code) else {
             return message
         }
-        
+
         switch errcd {
         case .networkError: message = "ネットワークに接続できません"
         case .userNotFound: message = "ユーザが見つかりません"

@@ -149,8 +149,6 @@ extension CreateGroupViewController:UICollectionViewDelegate, UICollectionViewDa
         cell.profileImage.sd_setImage(with: URL(string: selectedUserImageArray[indexPath.row]), completed: nil)
         cell.deleteButton!.addTarget(self, action: #selector(tapDeleteButton(_:)), for: .touchUpInside)
         cell.userNameLabel.text = userNameArray[indexPath.row]
-        print("daigoitemAt")
-        print(cell.deleteButton.tag)
         
         return cell
     }

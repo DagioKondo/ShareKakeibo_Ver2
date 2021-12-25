@@ -68,7 +68,7 @@ class AlertModel{
         let cameraPicker = UIImagePickerController()
         cameraPicker.sourceType = sourceType
         cameraPicker.allowsEditing = false
-        cameraPicker.delegate = CreateImagePicker as! UIImagePickerControllerDelegate & UINavigationControllerDelegate
+        cameraPicker.delegate = (CreateImagePicker as! UIImagePickerControllerDelegate & UINavigationControllerDelegate)
         CreateImagePicker.present(cameraPicker, animated: true, completion: nil)
         
     }
