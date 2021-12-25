@@ -101,7 +101,6 @@ class NewGroupViewController: UIViewController {
         let cell = sender.superview?.superview?.superview as! UITableViewCell
         indexPath = tableView.indexPath(for: cell)!
         groupID = groupNotJoinArray[indexPath.row].groupID
-//        groupName = groupNotJoinArray[indexPath.row].groupName
         UserDefaults.standard.setValue(groupID, forKey: "groupID")
         db.collection("userManagement").document(userID).setData([
             "joinGroupDic": [groupID: true],

@@ -21,6 +21,7 @@ class OthersViewController: UIViewController {
     let dateFormatter = DateFormatter()
     var startDate = Date()
     var endDate = Date()
+    var nowDate = Date()
     
     let lineChartsView = LineChartView()
     let yearLabel = UILabel()
@@ -84,7 +85,6 @@ class OthersViewController: UIViewController {
         year = String(date.year!)
         month = date.month!
         groupID = UserDefaults.standard.object(forKey: "groupID") as! String
-        loadDBModel.loadOKDelegate = self
         
         activityIndicatorView.startAnimating()
         dateFormatter.dateFormat = "yyyy年MM月dd日"
@@ -93,27 +93,38 @@ class OthersViewController: UIViewController {
         self.settlementDay = UserDefaults.standard.object(forKey: "settlementDay") as! String
         startDate = dateFormatter.date(from: "\(Int(year)! - 1)年\("12")月\(settlementDay)日")!
         endDate = dateFormatter.date(from: "\(year)年\("12")月\(settlementDay)日")!
+        if nowDate >= endDate{
+            year = String(Int(year)! + 1)
+            month = 1
+            startDate = dateFormatter.date(from: "\(Int(year)! - 1)年\("12")月\(settlementDay)日")!
+            endDate = dateFormatter.date(from: "\(year)年\("12")月\(settlementDay)日")!
+        }
         yearLabel.text = "\(year)年"
+        loadDBModel.loadOKDelegate = self
         loadDBModel.loadMonthlyOthersTransition(groupID: groupID, year: year, settlementDay: settlementDay, startDate: startDate, endDate: endDate)
     }
     
     
     @objc func nextYear(_ sender: UIButton){
+        var nextYear = String()
         yearCount = yearCount + 1
         month = 0
-        yearLabel.text = "\(Int(year)! + yearCount)年"
+        nextYear = String(Int(year)! + yearCount)
+        yearLabel.text = "\(nextYear)年"
         startDate = dateFormatter.date(from: "\(Int(year)! - 1 + yearCount)年\("12")月\(settlementDay)日")!
         endDate = dateFormatter.date(from: "\(Int(year)! + yearCount)年\("12")月\(settlementDay)日")!
-        loadDBModel.loadMonthlyOthersTransition(groupID: groupID, year: year, settlementDay: settlementDay, startDate: startDate, endDate: endDate)
+        loadDBModel.loadMonthlyOthersTransition(groupID: groupID, year: nextYear, settlementDay: settlementDay, startDate: startDate, endDate: endDate)
     }
     
     @objc func lastYear(_ sender: UIButton){
+        var lastYear = String()
         yearCount = yearCount - 1
         month = 0
-        yearLabel.text = "\(Int(year)! + yearCount)年"
+        lastYear = String(Int(year)! + yearCount)
+        yearLabel.text = "\(lastYear)年"
         startDate = dateFormatter.date(from: "\(Int(year)! - 1 + yearCount)年\("12")月\(settlementDay)日")!
         endDate = dateFormatter.date(from: "\(Int(year)! + yearCount)年\("12")月\(settlementDay)日")!
-        loadDBModel.loadMonthlyOthersTransition(groupID: groupID, year: year, settlementDay: settlementDay, startDate: startDate, endDate: endDate)
+        loadDBModel.loadMonthlyOthersTransition(groupID: groupID, year: lastYear, settlementDay: settlementDay, startDate: startDate, endDate: endDate)
     }
     
     

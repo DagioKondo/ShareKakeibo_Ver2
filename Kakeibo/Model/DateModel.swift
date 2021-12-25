@@ -113,7 +113,6 @@ class DateModel{
         }
     }
     
-//変更①＜start＞------------------------------------------
     
     //設定されたsettlementから次の決済年月日を取得する
     func getNextSettlement(settlement: String) -> Date{
@@ -158,7 +157,6 @@ class DateModel{
             db.setData(["settlementDic" : [key : false]],merge: true)
         }
     }
-//変更①＜end＞--------------------------------------------
 
     
     func getThisDete(){
