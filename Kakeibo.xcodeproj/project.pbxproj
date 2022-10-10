@@ -640,8 +640,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.daigoSwift.Kakeibo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.daigoSwift.Kakeibo-debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SK_BUNDLE_DISPLAY_NAME = "SK-Debug";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -664,6 +665,7 @@
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.daigoSwift.Kakeibo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SK_BUNDLE_DISPLAY_NAME = "シェア家計簿";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
