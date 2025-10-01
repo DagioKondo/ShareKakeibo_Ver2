@@ -1,12 +1,15 @@
 # シェア家計簿
+※現在はインストールできません。
 ## 概要
 •シェアハウス、カップル、家族、夫婦など生計を同一にする方向けの共有家計簿アプリです。<br>
 •毎月の支払い額を自動計算する機能を搭載しています。<br>
 •月々のお支払い状況や金額をカテゴリ別にグラフで表示する機能を搭載しています。<br>
 •グループを作成して招待することができます。そのグループと情報を共有することもできます。<br>
 •決済日を設定し、決済日が到来するとプッシュ通知でお知らせします。また、グループ内のユーザーが「有料」か「未払い」かを知ることができる機能を搭載しています。<br>
+<img width="148" height="320" alt="Simulator Screen Shot - iPhone 12 Pro Max - 2021-11-30 at 18 41 13" src="https://github.com/user-attachments/assets/e00fa46f-7e9e-47e2-a44d-1130cf79b1a5" />　<img width="148" height="320" alt="Simulator Screen Shot - iPhone 12 Pro Max - 2021-11-30 at 18 41 20" src="https://github.com/user-attachments/assets/1dd2f10e-ba8b-4045-8ee1-701af2a7db2e" />　<img width="148" height="320" alt="Simulator Screen Shot - iPhone 12 Pro Max - 2021-11-30 at 21 11 54" src="https://github.com/user-attachments/assets/2a3edcad-5595-4cd4-97ae-7ddc92bd3dc2" />　<img width="148" height="320" alt="Simulator Screen Shot - iPhone 12 Pro Max - 2021-11-30 at 18 41 26" src="https://github.com/user-attachments/assets/fd3e6c5e-220a-41b4-b925-b1e891d689e0" />　<img width="148" height="320" alt="Simulator Screen Shot - iPhone 12 Pro Max - 2021-11-30 at 21 11 41" src="https://github.com/user-attachments/assets/ee309a90-e9d3-4a4a-bd5b-ea770352af32" />
 
 ## 機能
+
 
 ■プロフィール画面<br>
 グループ一覧がプロフィール画面に表示されます。<br>
@@ -17,6 +20,7 @@
 複数のグループで家計簿をつけることができます。<br>
 招待機能でグループに参加することができます。ユーザー検索は部分一致で簡単に検索できます。<br>
 グループから退会することができます。<br>
+
 
 ■支払い情報<br>
 自分が支払ったお金を書き込むと、自動でグループの人数で割り勘し、自分にいくら支払いがあるか計算し、表示します。<br>
